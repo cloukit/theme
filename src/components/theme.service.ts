@@ -11,9 +11,7 @@ export class CloukitThemeService {
 
   private themes: RegisteredTheme[] = [];
 
-  constructor() {
-    console.log('CloukitThemeService SUPER');
-  }
+  constructor() { }
 
   registerComponentTheme(componentName: string, componentTheme: CloukitComponentTheme): void {
     this.themes.push(new RegisteredTheme(componentName, componentTheme));

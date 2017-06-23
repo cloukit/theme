@@ -1,0 +1,12 @@
+{
+  "COMMENT": "THIS FILE IS JUST USED FOR THE EDITOR. NOT FOR THE BUILD!!!",
+  "compilerOptions": {
+    "baseUrl": "./lib",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "rootDir": "./lib",
+    "lib": ["es2015", "dom"],
+    "skipLibCheck": true,
+    "types": []
+  }
+}

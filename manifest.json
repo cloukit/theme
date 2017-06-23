@@ -1,0 +1,14 @@
+{
+  "moduleId": "theme",
+  "version": "1.0.0",
+  "description": "Basic classes and services for theming components.",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "@angular/core": "^4.0.1",
+    "@angular/common": "^4.0.1",
+    "@angular/platform-browser": "^4.0.1",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}

@@ -10,7 +10,8 @@ import { CloukitThemeService } from './theme.service';
 
 @NgModule({
   imports: [ CommonModule, BrowserModule ],
-  exports: [ CloukitThemeService ],
-  declarations: [ CloukitThemeService ]
+  exports: [ ],
+  declarations: [ ],
+  providers: [ CloukitThemeService ],
 })
 export class ThemeModule {}

@@ -3,7 +3,6 @@
  * Copyright (c) 2017 Bernhard Grünewaldt - codeclou.io
  * https://github.com/cloukit/legal
  */
-import { Component, forwardRef, Input, Optional } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { CloukitComponentTheme, RegisteredTheme } from './theme.model';
 

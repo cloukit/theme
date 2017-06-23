@@ -33,7 +33,6 @@ export abstract class CloukitComponentTheme {
   }
 
   public getStyle(elementName: string, uiState: string, uiModifier: string): any {
-    console.log(this.styles);
     return this.styles.filter((theme => theme.elementName === elementName &&
       theme.uiState === uiState && theme.uiModifier === uiModifier))[0].styles;
   }

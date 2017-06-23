@@ -33,7 +33,6 @@ export abstract class CloukitComponentTheme {
 
   public createStyle(elementName: string, uiState: string, uiModifier: string, styles: any): any {
     let existingStyle = this.getElementTheme(elementName, uiState, uiModifier);
-    console.log('existingStyle', existingStyle);
     if (existingStyle !== undefined && existingStyle !== null) {
       // UPDATE
       existingStyle.styles = styles;
@@ -53,7 +52,6 @@ export abstract class CloukitComponentTheme {
   }
 
   public getStyle(elementName: string, uiState: string, uiModifier: string): any {
-    console.log('ALLSTYLES', this.styles);
     const style = this.getElementTheme(elementName, uiState, uiModifier);
     if (style !== undefined && style !== null) {
       /* immutable copy */

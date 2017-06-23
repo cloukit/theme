@@ -17,7 +17,7 @@ export class CloukitComponentThemeUiStateModifier {
 }
 
 export abstract class CloukitComponentTheme {
-  protected style: CloukitComponentThemeUiState = new CloukitComponentThemeUiState();
+  protected _style: CloukitComponentThemeUiState = new CloukitComponentThemeUiState();
 
   private _merge(x, y) {
     return Object.assign({}, x, y);
@@ -27,7 +27,7 @@ export abstract class CloukitComponentTheme {
     if (prefixer === undefined) {
       prefixer = x => x;
     }
-    return this.style.states.filter((state => state.id === uiState))[0].styles[componentName][uiModifier];
+    return this._style.states.filter((state => state.id === uiState))[0].styles[componentName][uiModifier];
   }
 }
 

@@ -3,7 +3,7 @@
  * Copyright (c) 2017 Bernhard Grünewaldt - codeclou.io
  * https://github.com/cloukit/legal
  */
-import merge from 'lodash.merge';
+import { merge } from 'lodash.merge';
 
 export class CloukitStatefulAndModifierAwareElementTheme {
   public elementName: string;

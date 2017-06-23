@@ -3,6 +3,8 @@
  * Copyright (c) 2017 Bernhard Grünewaldt - codeclou.io
  * https://github.com/cloukit/legal
  */
+import { merge } from 'lodash.merge';
+
 export class CloukitStatefulAndModifierAwareComponentTheme {
   public elementName: string;
   public uiState: string;
@@ -24,8 +26,9 @@ export abstract class CloukitComponentTheme {
     this.styles = [];
   }
 
-  protected _merge(x, y) {
-    return Object.assign({}, x, y);
+  // Deep merge two styles
+  public merge(target, source) {
+    return merge(target, source);
   }
 
   public createStyle(elementName: string, uiState: string, uiModifier: string, styles: any): any {

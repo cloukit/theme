@@ -17,13 +17,26 @@ export class CloukitComponentThemeUiStateModifier {
 }
 
 export abstract class CloukitComponentTheme {
-  protected _style: CloukitComponentThemeUiState = new CloukitComponentThemeUiState();
+  private _style: CloukitComponentThemeUiState;
+
+  constructor() {
+    this._style = new CloukitComponentThemeUiState();
+  }
 
   private _merge(x, y) {
     return Object.assign({}, x, y);
   }
 
-  public getStyle(componentName: string, uiState: string, uiModifier: string, prefixer?: Function) {
+  public createStyle(componentName: string, uiState: string, uiModifier: string, styles:any): any {
+    const newStyle = {};
+    newStyle[componentName] = {};
+    newStyle[componentName][uiModifier] = styles ? styles : {};
+    const newStyleObj = new CloukitComponentThemeUiStateModifier(uiState, newStyle);
+    this._style.states.push(newStyleObj);
+    return newStyleObj.styles[componentName][uiModifier];
+  }
+
+  public getStyle(componentName: string, uiState: string, uiModifier: string, prefixer?: Function): any {
     if (prefixer === undefined) {
       prefixer = x => x;
     }

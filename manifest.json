@@ -1,6 +1,6 @@
 {
   "moduleId": "theme",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Basic classes and services for theming components.",
   "dependencies": {
     "lodash.merge": "^4.6.0"

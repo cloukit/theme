@@ -3,9 +3,9 @@
  * Copyright (c) 2017 Bernhard Grünewaldt - codeclou.io
  * https://github.com/cloukit/legal
  */
-import { merge } from 'lodash.merge';
+import merge from 'lodash.merge';
 
-export class CloukitStatefulAndModifierAwareComponentTheme {
+export class CloukitStatefulAndModifierAwareElementTheme {
   public elementName: string;
   public uiState: string;
   public uiModifier: string;
@@ -20,7 +20,7 @@ export class CloukitStatefulAndModifierAwareComponentTheme {
 }
 
 export abstract class CloukitComponentTheme {
-  private styles: CloukitStatefulAndModifierAwareComponentTheme[];
+  private styles: CloukitStatefulAndModifierAwareElementTheme[];
 
   constructor() {
     this.styles = [];
@@ -32,12 +32,34 @@ export abstract class CloukitComponentTheme {
   }
 
   public createStyle(elementName: string, uiState: string, uiModifier: string, styles: any): any {
-    this.styles.push(new CloukitStatefulAndModifierAwareComponentTheme(elementName, uiState, uiModifier, styles));
+    let existingStyle = this.getElementTheme(elementName, uiState, uiModifier);
+    console.log('existingStyle', existingStyle);
+    if (existingStyle !== undefined && existingStyle !== null) {
+      // UPDATE
+      existingStyle.styles = styles;
+      return;
+    }
+    // NEW
+    this.styles.push(new CloukitStatefulAndModifierAwareElementTheme(elementName, uiState, uiModifier, styles));
+  }
+
+  private getElementTheme(elementName: string, uiState: string, uiModifier: string): CloukitStatefulAndModifierAwareElementTheme {
+    const style = this.styles.filter((theme => theme.elementName === elementName &&
+      theme.uiState === uiState && theme.uiModifier === uiModifier));
+    if (style !== undefined && style !== null && style[0] !== undefined) {
+      return style[0];
+    }
+    return null;
   }
 
   public getStyle(elementName: string, uiState: string, uiModifier: string): any {
-    return this.styles.filter((theme => theme.elementName === elementName &&
-      theme.uiState === uiState && theme.uiModifier === uiModifier))[0].styles;
+    console.log('ALLSTYLES', this.styles);
+    const style = this.getElementTheme(elementName, uiState, uiModifier);
+    if (style !== undefined && style !== null) {
+      /* immutable copy */
+      return JSON.parse(JSON.stringify(style.styles));
+    }
+    return null;
   }
 
   public getStyleForView(elementName: string, uiState: string, uiModifier: string, prefixer: Function): any {

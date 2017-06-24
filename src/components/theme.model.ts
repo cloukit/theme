@@ -3,20 +3,28 @@
  * Copyright (c) 2017 Bernhard Grünewaldt - codeclou.io
  * https://github.com/cloukit/legal
  */
-import { merge } from 'lodash.merge';
-
 export class CloukitStatefulAndModifierAwareElementTheme {
   public elementName: string;
   public uiState: string;
   public uiModifier: string;
-  public styles: any;
+  public styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
 
-  constructor(elementName: string, uiState: string, uiModifier: string, styles: any) {
+  constructor(elementName: string, uiState: string, uiModifier: string, styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition) {
     this.elementName = elementName;
     this.uiState = uiState;
     this.uiModifier = uiModifier;
-    this.styles = styles;
+    this.styleDef = styleDef;
   }
+}
+
+export class CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
+  public style: any;
+  public icon : CloukitStatefulAndModifierAwareElementThemeStyleDefinitionSvgIcon;
+}
+
+export class CloukitStatefulAndModifierAwareElementThemeStyleDefinitionSvgIcon {
+  public svgPathD: string;
+  svgStyle: any;
 }
 
 export abstract class CloukitComponentTheme {
@@ -26,20 +34,30 @@ export abstract class CloukitComponentTheme {
     this.styles = [];
   }
 
-  // Deep merge two styles
-  public merge(target, source) {
-    return merge(target, source);
+  // Deep merge y into x
+  public merge(x: CloukitStatefulAndModifierAwareElementThemeStyleDefinition, y: CloukitStatefulAndModifierAwareElementThemeStyleDefinition) {
+    const theme = { };
+    theme['style'] = Object.assign({}, x.style, y.style);
+    if (x.icon !== undefined && x.icon !== null) {
+      theme['icon'] = Object.assign({}, x.icon, y.icon);
+      if (y.icon !== undefined && y.icon !== null) {
+        theme['icon']['svgStyle'] = Object.assign({}, x.icon.svgStyle, y.icon.svgStyle);
+      } else {
+        theme['icon']['svgStyle'] = Object.assign({}, x.icon.svgStyle);
+      }
+    }
+    return theme;
   }
 
-  public createStyle(elementName: string, uiState: string, uiModifier: string, styles: any): any {
+  public createStyle(elementName: string, uiState: string, uiModifier: string, styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): any {
     let existingStyle = this.getElementTheme(elementName, uiState, uiModifier);
     if (existingStyle !== undefined && existingStyle !== null) {
       // UPDATE
-      existingStyle.styles = styles;
+      existingStyle.styleDef = styleDef;
       return;
     }
     // NEW
-    this.styles.push(new CloukitStatefulAndModifierAwareElementTheme(elementName, uiState, uiModifier, styles));
+    this.styles.push(new CloukitStatefulAndModifierAwareElementTheme(elementName, uiState, uiModifier, styleDef));
   }
 
   private getElementTheme(elementName: string, uiState: string, uiModifier: string): CloukitStatefulAndModifierAwareElementTheme {
@@ -51,11 +69,11 @@ export abstract class CloukitComponentTheme {
     return null;
   }
 
-  public getStyle(elementName: string, uiState: string, uiModifier: string): any {
+  public getStyle(elementName: string, uiState: string, uiModifier: string): CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
     const style = this.getElementTheme(elementName, uiState, uiModifier);
     if (style !== undefined && style !== null) {
       /* immutable copy */
-      return JSON.parse(JSON.stringify(style.styles));
+      return JSON.parse(JSON.stringify(style.styleDef)) as CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
     }
     return null;
   }

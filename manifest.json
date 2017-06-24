@@ -1,12 +1,10 @@
 {
   "moduleId": "theme",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Basic classes and services for theming components.",
   "dependencies": {
-    "lodash.merge": "^4.6.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.66"
   },
   "peerDependencies": {
     "@angular/core": "^4.0.1",

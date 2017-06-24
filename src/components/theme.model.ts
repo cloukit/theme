@@ -46,7 +46,7 @@ export abstract class CloukitComponentTheme {
         theme['icon']['svgStyle'] = Object.assign({}, x.icon.svgStyle);
       }
     }
-    return theme;
+    return theme as CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
   }
 
   public createStyle(elementName: string, uiState: string, uiModifier: string, styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): any {

@@ -35,7 +35,7 @@ export abstract class CloukitComponentTheme {
   }
 
   // Deep merge y into x
-  public merge(x: CloukitStatefulAndModifierAwareElementThemeStyleDefinition, y: CloukitStatefulAndModifierAwareElementThemeStyleDefinition) {
+  public merge(x: CloukitStatefulAndModifierAwareElementThemeStyleDefinition, y: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
     const theme = { };
     theme['style'] = Object.assign({}, x.style, y.style);
     if (x.icon !== undefined && x.icon !== null) {

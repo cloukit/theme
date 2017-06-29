@@ -78,12 +78,6 @@ export class CloukitComponentTheme {
     return null;
   }
 
-  public getStyleForView(elementName: string, uiState: string, uiModifier: string, prefixer: Function): any {
-    if (prefixer === undefined) {
-      prefixer = x => x;
-    }
-    // FIXME: INJECT PREFIXER HERE
-  }
 }
 
 export class RegisteredTheme {

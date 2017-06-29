@@ -27,8 +27,8 @@ export class CloukitStatefulAndModifierAwareElementThemeStyleDefinitionSvgIcon {
   public svgStyle: any;
 }
 
-export abstract class CloukitComponentTheme {
-  protected styles: CloukitStatefulAndModifierAwareElementTheme[];
+export class CloukitComponentTheme {
+  public styles: CloukitStatefulAndModifierAwareElementTheme[];
 
   constructor() {
     this.styles = [];
@@ -60,7 +60,7 @@ export abstract class CloukitComponentTheme {
     this.styles.push(new CloukitStatefulAndModifierAwareElementTheme(elementName, uiState, uiModifier, styleDef));
   }
 
-  protected getElementTheme(elementName: string, uiState: string, uiModifier: string): CloukitStatefulAndModifierAwareElementTheme {
+  public getElementTheme(elementName: string, uiState: string, uiModifier: string): CloukitStatefulAndModifierAwareElementTheme {
     const style = this.styles.filter((theme => theme.elementName === elementName &&
       theme.uiState === uiState && theme.uiModifier === uiModifier));
     if (style !== undefined && style !== null && style[0] !== undefined) {

@@ -4,3 +4,5 @@ node_modules
 build
 dist
 library-build-chain
+src/*.js
+src/components/*.js

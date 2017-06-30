@@ -1,2 +1,3 @@
-# theme
-Basic classes and services for theming components
+# @cloukit/theme
+
+**GoTo https://cloukit.github.io/#/component/theme**

@@ -28,7 +28,8 @@ class DummyTheme extends CloukitComponentTheme {
         display: 'inline-block',
         backgroundColor: '#383838',
         color: '#fff',
-        transition: 'background-color 300ms linear, border-radius 300ms linear',
+        transition: `background-color 300ms linear,
+          border-radius 300ms linear`,
       }
     } as CloukitStatefulAndModifierAwareElementThemeStyleDefinition);
 

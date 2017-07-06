@@ -14,4 +14,4 @@ import { CloukitThemeService } from './theme.service';
   declarations: [ ],
   providers: [ CloukitThemeService ],
 })
-export class ThemeModule {}
+export class CloukitThemeModule {}

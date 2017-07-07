@@ -4,6 +4,7 @@ node_modules
 build
 dist
 library-build-chain
+documentation
 src/*.js
 src/components/*.js
-documentation/
+tsconfig-*.json

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>@cloukit/theme</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>.spinner{margin:100px auto;width:70px;height:40px;text-align:center;font-size:10px}.spinner>div{background-color:rgb(113, 14, 204);margin-left:6px;height:100%;width:6px;display:inline-block;-webkit-animation:sk-stretchdelay 1.2s infinite ease-in-out;animation:sk-stretchdelay 1.2s infinite ease-in-out}.spinner .rect2{-webkit-animation-delay:-1.1s;animation-delay:-1.1s}.spinner .rect3{-webkit-animation-delay:-1s;animation-delay:-1s}.spinner .rect4{-webkit-animation-delay:-.9s;animation-delay:-.9s}.spinner .rect5{-webkit-animation-delay:-.8s;animation-delay:-.8s}@-webkit-keyframes sk-stretchdelay{0%,100%,40%{-webkit-transform:scaleY(.4)}20%{-webkit-transform:scaleY(1)}}@keyframes sk-stretchdelay{0%,100%,40%{transform:scaleY(.4);-webkit-transform:scaleY(.4)}20%{transform:scaleY(1);-webkit-transform:scaleY(1)}}</style>
+  </head>
+  <body>
+    <my-app>
+      <div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>
+    </my-app>
+    <script src="https://unpkg.com/es6-shim@0.35.3/es6-shim.min.js"></script>
+    <script src="https://unpkg.com/zone.js@0.8.4/dist/zone.js"></script>
+    <script src="https://unpkg.com/reflect-metadata@0.1.9/Reflect.js"></script>
+    <script src="https://unpkg.com/systemjs@0.19.41/dist/system.js"></script>
+    <script src="https://unpkg.com/typescript@2.1.4/lib/typescript.js"></script>
+    <script src="config.js"></script>
+    <script>
+      System.import('app').catch(console.error.bind(console));
+    </script>
+  </body>
+</html>

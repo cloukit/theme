@@ -8,3 +8,4 @@ Then you can use your styles via the `CloukitThemeService` inside your component
 The theme component is usually hidden from the enduser. So do not care too much about it.
 
 If you really want to create a custom style see the [Themeing Guide](https://cloukit.github.io/#/guide/themeing).
+

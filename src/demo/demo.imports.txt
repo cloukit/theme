@@ -1,4 +1,3 @@
-/** WILL BE INJECTED INTO ./dist-demo/src/app/app.module.ts **/
 import { Injectable } from '@angular/core';
 import { CloukitThemeService } from '../index';
 import { DummyTheme } from '../demo/demo.theme';

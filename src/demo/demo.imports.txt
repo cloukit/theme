@@ -1,0 +1,23 @@
+/** WILL BE INJECTED INTO ./dist-demo/src/app/app.module.ts **/
+import { Injectable } from '@angular/core';
+import { CloukitThemeService } from '../index';
+import { DummyTheme } from '../demo/demo.theme';
+
+/* use real CSS prefixer in real life here */
+const prefixAll = (x) => x;
+
+@Injectable()
+export class MyThemeService extends CloukitThemeService {
+  constructor() {
+    super();
+    const dummyTheme = new DummyTheme();
+    this.registerPrefixer(prefixAll);
+    this.registerComponentTheme('dummy', dummyTheme);
+  }
+};
+
+// ngDeclarations
+// ngImports
+ngProviders.push({ provide: CloukitThemeService, useClass: MyThemeService });
+// ngBootStrap
+

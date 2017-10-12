@@ -3,8 +3,10 @@
 node_modules
 build
 dist
+dist-demo
 library-build-chain
 documentation
 src/*.js
 src/components/*.js
 tsconfig-*.json
+yarn.lock

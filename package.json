@@ -2,7 +2,7 @@
   "COMMENT": "THIS FILE WILL BE PARSED DURING BUILD. IT IS NOT THE ACTUAL PACKAGE FILE PUSHE TO NPMJS!",
   "name": "@cloukit/theme",
   "moduleId": "theme",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Basic classes and services for themeing components.",
   "license": "MIT",
   "author": "codelcou.io",

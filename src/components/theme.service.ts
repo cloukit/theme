@@ -6,6 +6,7 @@
 import { Injectable } from '@angular/core';
 import { CloukitComponentTheme, RegisteredTheme } from './theme.model';
 import { CloukitStatefulAndModifierAwareElementThemeStyleDefinition } from './theme.model';
+import { isNullOrUndefined } from 'util';
 
 /**
  * With the CloukitThemeService you can register component themes globally
@@ -72,6 +73,7 @@ export class CloukitThemeService {
    * @returns {CloukitStatefulAndModifierAwareElementThemeStyleDefinition}
    */
   public prefixStyle(style: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
+    if (isNullOrUndefined(style)) { return style; }
     style.style = this.prefixer(style.style);
     return style;
   }

@@ -19,6 +19,10 @@ export class CloukitStatefulAndModifierAwareElementTheme {
     this.uiModifier = uiModifier;
     this.styleDef = styleDef;
   }
+
+  public static from(uiElement: UiElement, styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): CloukitStatefulAndModifierAwareElementTheme {
+    return new CloukitStatefulAndModifierAwareElementTheme(uiElement.element, uiElement.state, uiElement.modifier, styleDef);
+  }
 }
 
 /**
@@ -82,6 +86,10 @@ export class CloukitComponentTheme {
     this.styles.push(new CloukitStatefulAndModifierAwareElementTheme(elementName, uiState, uiModifier, styleDef));
   }
 
+  public createUiStyle(uiElement: UiElement, styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): any {
+    return this.createStyle(uiElement.element, uiElement.state, uiElement.modifier, styleDef);
+  }
+
   /**
    * Returns the elementTheme with reference! If you manipulate the return value it will have effect on the registered theme!
    * If you want an independent copy instead use `getStyle()`.
@@ -98,6 +106,10 @@ export class CloukitComponentTheme {
       return style[0];
     }
     return null;
+  }
+
+  public getUiElementTheme(uiElement: UiElement): CloukitStatefulAndModifierAwareElementTheme {
+    return this.getElementTheme(uiElement.element, uiElement.state, uiElement.modifier);
   }
 
   /**
@@ -117,6 +129,10 @@ export class CloukitComponentTheme {
     return null;
   }
 
+  public getUiStyle(uiElement: UiElement): CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
+    return this.getStyle(uiElement.element, uiElement.state, uiElement.modifier);
+  }
+
 }
 
 /**
@@ -127,4 +143,14 @@ export class RegisteredTheme {
     public componentName: string,
     public componentTheme: CloukitComponentTheme
   ) {}
+}
+
+/**
+ * Used to describe a single UI Element
+ */
+export class UiElement {
+  constructor(
+    public element: string,
+    public state: string,
+    public modifier: string) { }
 }

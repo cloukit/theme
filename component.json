@@ -4,7 +4,7 @@
   "versions": [
     {
       "version": "1.6.1",
-      "themes": [  ]
+      "hasTheme": false
     }
   ]
 }

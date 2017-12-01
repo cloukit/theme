@@ -1,3 +1,14 @@
-# Library Demo
+# Build and Run Demo
 
-See https://github.com/cloukit/library-build-chain/blob/master/LIBRARY_DEMO.md
+Clone the demo and run it with [yarn](https://yarnpkg.com/en/).
+
+```
+git clone https://github.com/cloukit/theme.git
+cd theme
+yarn
+yarn build
+yarn build:demo
+yarn start:demo
+```
+
+Go to http://localhost:4200/

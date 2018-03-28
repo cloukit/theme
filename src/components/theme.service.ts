@@ -28,8 +28,6 @@ export class CloukitThemeService {
    * Example: `userSelect` will be expanded to `WebkitUserSelect` and `MozUserSelect`
    *
    * If no prefixer is registered the identity function is used.
-   *
-   * @param prefixer
    */
   public registerPrefixer(prefixer: Function) {
     this.prefixer = prefixer;
@@ -41,8 +39,6 @@ export class CloukitThemeService {
    * E.g. "toggle" for toggle component a.s.o
    * If you register a custom theme, at best use "toggle--fancy" or similar.
    *
-   * @param componentName
-   * @param componentTheme
    */
   public registerComponentTheme(componentName: string, componentTheme: CloukitComponentTheme): void {
     this.themes.push(new RegisteredTheme(componentName, componentTheme));
@@ -51,9 +47,6 @@ export class CloukitThemeService {
   /**
    * Get a registered component theme by the component name (or whatever name you used to register your theme).
    * If no registered theme is found, null is returned.
-   *
-   * @param componentName
-   * @returns {any}
    */
   public getComponentTheme(componentName: string): CloukitComponentTheme {
     const theme = this.themes.filter(registeredTheme => registeredTheme.componentName === componentName);
@@ -68,9 +61,6 @@ export class CloukitThemeService {
    * Transform a style with the prefixer function.
    *
    * If no prefixer is registered the identity function is used.
-   *
-   * @param style
-   * @returns {CloukitStatefulAndModifierAwareElementThemeStyleDefinition}
    */
   public prefixStyle(style: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
     if (isNullOrUndefined(style)) { return style; }

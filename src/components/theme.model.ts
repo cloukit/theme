@@ -49,9 +49,6 @@ export class CloukitComponentTheme {
 
   /**
    * Deep merge style y into style x
-   * @param x
-   * @param y
-   * @returns {CloukitStatefulAndModifierAwareElementThemeStyleDefinition}
    */
   public merge(x: CloukitStatefulAndModifierAwareElementThemeStyleDefinition, y: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
     const theme = { };
@@ -69,11 +66,6 @@ export class CloukitComponentTheme {
 
   /**
    * Create a style for an element inside the component.
-   *
-   * @param elementName
-   * @param uiState
-   * @param uiModifier
-   * @param styleDef
    */
   public createStyle(elementName: string, uiState: string, uiModifier: string, styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): any {
     let existingStyle = this.getElementTheme(elementName, uiState, uiModifier);
@@ -93,11 +85,6 @@ export class CloukitComponentTheme {
   /**
    * Returns the elementTheme with reference! If you manipulate the return value it will have effect on the registered theme!
    * If you want an independent copy instead use `getStyle()`.
-   *
-   * @param elementName
-   * @param uiState
-   * @param uiModifier
-   * @returns {any}
    */
   public getElementTheme(elementName: string, uiState: string, uiModifier: string): CloukitStatefulAndModifierAwareElementTheme {
     const style = this.styles.filter((theme => theme.elementName === elementName &&
@@ -114,11 +101,6 @@ export class CloukitComponentTheme {
 
   /**
    * Will return an independent copy of the style.
-   *
-   * @param elementName
-   * @param uiState
-   * @param uiModifier
-   * @returns {any}
    */
   public getStyle(elementName: string, uiState: string, uiModifier: string): CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
     const style = this.getElementTheme(elementName, uiState, uiModifier);

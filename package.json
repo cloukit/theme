@@ -15,7 +15,8 @@
     "build:demo": "node ./node_modules/@cloukit/library-build-chain/build.js --demo --install",
     "start:demo": "node ./node_modules/@cloukit/library-build-chain/build.js --demo --run",
     "watch": "node ./node_modules/@cloukit/library-build-chain/build.js --watch",
-    "test": "echo \"ok\""
+    "test": "./node_modules/mocha/bin/mocha --reporter min --timeout 8000 --exit -r ts-node/register ./src/components/*.spec.ts",
+    "test:watch": "./node_modules/mocha/bin/mocha --watch --watch-extensions ts --reporter min --timeout 8000 --exit -r ts-node/register ./src/components/*.spec.ts"
   },
   "dependencies": {
   },

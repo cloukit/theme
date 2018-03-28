@@ -5,6 +5,8 @@
  */
 
 /**
+ * @deprecated see https://github.com/cloukit/icon
+ *
  * Cloukit Icons
  *
  * An icon consists of exactly one path inside a 512x512 pixel viewbox.

@@ -2,7 +2,7 @@
   "COMMENT": "THIS FILE WILL BE PARSED DURING BUILD. IT IS NOT THE ACTUAL PACKAGE FILE PUSHE TO NPMJS!",
   "name": "@cloukit/theme",
   "moduleId": "theme",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Basic classes and services for themeing components.",
   "license": "MIT",
   "author": "codelcou.io",
@@ -20,7 +20,8 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@cloukit/library-build-chain": "1.5.0"
+    "@cloukit/library-build-chain": "1.17.1",
+    "@cloukit/story": "1.3.0"
   },
   "peerDependencies": {
     "@angular/common": ">=4.0.0",

@@ -1,17 +1,8 @@
-<div class="demo">
-  <h3>Custom Theme</h3>
+<div style="padding:10px;">
 
-  <p>
-    Hover the element to see the changing <strong>uiModifer</strong>
-    and/or Click the element to see the changing <strong>uiState</strong>:
-  </p>
+  <cloukit-story title="Basic Usage" story="story-00-basic">
+    <story-00-basic></story-00-basic>
+  </cloukit-story>
 
-  <div
-    [ngStyle]="getStyle('myelement').style"
-    (click)="toggleUiState()"
-    (mouseenter)="toggleUiModifier()"
-    (mouseleave)="toggleUiModifier()"
-  >
-    click me
-  </div>
+
 </div>

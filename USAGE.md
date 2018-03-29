@@ -42,7 +42,7 @@ If you really want to create a custom style see the [Themeing Guide](https://clo
 
 &nbsp;
 
-### Version Compatibilty
+### Version Compatibility
 
 You can read the [release comments](https://github.com/cloukit/theme/releases) for full details.
 

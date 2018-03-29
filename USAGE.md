@@ -42,12 +42,19 @@ If you really want to create a custom style see the [Themeing Guide](https://clo
 
 &nbsp;
 
-### Angular >=4.0.0
+### Version Compatibilty
 
-If you still run Angular 4 then use the last Angular 4 compatible version
+You can read the [release comments](https://github.com/cloukit/theme/releases) for full details.
 
-```shell
+Please mind the the compatibility chart
+
+| Angular Version | Cloukit Component Version |
+|-----------------|---------------------------|
+| >=5.0.0         | 1.6.2 - current           |
+| >=4.0.0         | 1.6.0 - 1.6.1             |
+
+To install a specific version use:
+
+```
 yarn add @cloukit/theme@1.6.1
 ```
-
-For Angular >=5.0.0 use the latest release

@@ -49,3 +49,5 @@ If you still run Angular 4 then use the last Angular 4 compatible version
 ```bash
 yarn add @cloukit/theme@1.6.1
 ```
+
+For Angular >=5.0.0 use the latest release

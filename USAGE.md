@@ -46,7 +46,7 @@ If you really want to create a custom style see the [Themeing Guide](https://clo
 
 If you still run Angular 4 then use the last Angular 4 compatible version
 
-```bash
+```sh
 yarn add @cloukit/theme@1.6.1
 ```
 

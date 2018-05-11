@@ -3,6 +3,10 @@
   "status": "STABLE",
   "versions": [
     {
+      "version": "6.0.0",
+      "hasTheme": false
+    },
+    {
       "version": "1.7.0",
       "hasTheme": false
     },

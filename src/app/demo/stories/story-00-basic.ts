@@ -34,13 +34,13 @@ export class Story00Component {
     this.theme = this.themeService.getComponentTheme('dummy');
   }
 
-  private getStyle(element: string):
+  public getStyle(element: string):
     CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
     const style = this.theme.getStyle(element, this.uiState, this.uiModifier);
     return this.themeService.prefixStyle(style);
   }
 
-  private toggleUiState() {
+  public toggleUiState() {
     if (this.uiState === 'unclicked') {
       this.uiState = 'clicked';
     } else {
@@ -48,7 +48,7 @@ export class Story00Component {
     }
   }
 
-  private toggleUiModifier() {
+  public toggleUiModifier() {
     if (this.uiModifier === 'base') {
       this.uiModifier = 'hover';
     } else {

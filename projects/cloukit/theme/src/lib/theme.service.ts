@@ -15,7 +15,9 @@ import { isNullOrUndefined } from 'util';
  *
  * See the [Themeing Guide]{@link https://cloukit.github.io/#/guide/themeing} for more Details.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CloukitThemeService {
 
   private themes: RegisteredTheme[] = [];
@@ -62,7 +64,8 @@ export class CloukitThemeService {
    *
    * If no prefixer is registered the identity function is used.
    */
-  public prefixStyle(style: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
+  public prefixStyle(style: CloukitStatefulAndModifierAwareElementThemeStyleDefinition):
+    CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
     if (isNullOrUndefined(style)) { return style; }
     style.style = this.prefixer(style.style);
     return style;

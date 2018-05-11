@@ -13,14 +13,16 @@ export class CloukitStatefulAndModifierAwareElementTheme {
   public uiModifier: string;
   public styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
 
-  constructor(elementName: string, uiState: string, uiModifier: string, styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition) {
+  constructor(elementName: string, uiState: string, uiModifier: string, styleDef:
+    CloukitStatefulAndModifierAwareElementThemeStyleDefinition) {
     this.elementName = elementName;
     this.uiState = uiState;
     this.uiModifier = uiModifier;
     this.styleDef = styleDef;
   }
 
-  public static from(uiElement: UiElement, styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): CloukitStatefulAndModifierAwareElementTheme {
+  public static from(uiElement: UiElement, styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition):
+    CloukitStatefulAndModifierAwareElementTheme {
     return new CloukitStatefulAndModifierAwareElementTheme(uiElement.element, uiElement.state, uiElement.modifier, styleDef);
   }
 }
@@ -50,7 +52,9 @@ export class CloukitComponentTheme {
   /**
    * Deep merge style y into style x
    */
-  public merge(x: CloukitStatefulAndModifierAwareElementThemeStyleDefinition, y: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
+  public merge(x: CloukitStatefulAndModifierAwareElementThemeStyleDefinition,
+    y: CloukitStatefulAndModifierAwareElementThemeStyleDefinition):
+    CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
     const theme = { };
     theme['style'] = Object.assign({}, x.style, y.style);
     if (x.icon !== undefined && x.icon !== null) {
@@ -67,8 +71,9 @@ export class CloukitComponentTheme {
   /**
    * Create a style for an element inside the component.
    */
-  public createStyle(elementName: string, uiState: string, uiModifier: string, styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): any {
-    let existingStyle = this.getElementTheme(elementName, uiState, uiModifier);
+  public createStyle(elementName: string, uiState: string, uiModifier: string,
+    styleDef: CloukitStatefulAndModifierAwareElementThemeStyleDefinition): any {
+    const existingStyle = this.getElementTheme(elementName, uiState, uiModifier);
     if (existingStyle !== undefined && existingStyle !== null) {
       // UPDATE
       existingStyle.styleDef = styleDef;

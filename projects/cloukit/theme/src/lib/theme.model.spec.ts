@@ -3,7 +3,6 @@
  * Copyright (c) 2017 Bernhard Grünewaldt - codeclou.io
  * https://github.com/cloukit/legal
  */
-import { expect } from 'chai';
 import { CloukitStatefulAndModifierAwareElementThemeStyleDefinition, CloukitComponentTheme } from './theme.model';
 
 class CloukitComponentThemeForTest extends CloukitComponentTheme {
@@ -109,21 +108,22 @@ const expectedMergedStyle5and6 = {
   }
 } as CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
 
-// Mocha/Chai Unit Test -> run by "library-build-chain" with "npm run test"
-describe("CloukitComponentTheme", () => {
+// Karma/Jasmine Unit Test
+describe('CloukitComponentTheme', () => {
 
-  it("merge() should merge two well formed styles", () => {
+  it('merge() should merge two well formed styles', () => {
     const comp = new CloukitComponentThemeForTest();
-    expect(JSON.stringify(comp.merge(style1, style2), null, 2)).to.be.equal(JSON.stringify(expectedMergedStyle1and2, null, 2));
+    expect(JSON.stringify(comp.merge(style1, style2), null, 2)).toBe(JSON.stringify(expectedMergedStyle1and2, null, 2));
   });
 
-  it("merge() should merge two unusual formed styles", () => {
+  it('merge() should merge two unusual formed styles', () => {
     const comp = new CloukitComponentThemeForTest();
-    expect(JSON.stringify(comp.merge(style3, style4), null, 2)).to.be.equal(JSON.stringify(expectedMergedStyle3and4, null, 2));
+    expect(JSON.stringify(comp.merge(style3, style4), null, 2)).toBe(JSON.stringify(expectedMergedStyle3and4, null, 2));
   });
 
-  it("merge() should merge two styles without icon", () => {
+  it('merge() should merge two styles without icon', () => {
     const comp = new CloukitComponentThemeForTest();
-    expect(JSON.stringify(comp.merge(style5, style6), null, 2)).to.be.equal(JSON.stringify(expectedMergedStyle5and6, null, 2));
+    expect(JSON.stringify(comp.merge(style5, style6), null, 2)).toBe(JSON.stringify(expectedMergedStyle5and6, null, 2));
   });
+
 });

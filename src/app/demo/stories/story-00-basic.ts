@@ -4,13 +4,13 @@ import {
   CloukitThemeService,
   CloukitComponentTheme,
   CloukitStatefulAndModifierAwareElementThemeStyleDefinition
-} from '../../index';
+} from '../../../../projects/cloukit/theme/src/public_api';
 
 /* import and use a real CSS prefixer here */
 const prefixAll = (x) => x;
 
 @Component({
-  selector: 'story-00-basic',
+  selector: 'cloukit-story-00-basic',
   templateUrl: './story-00-basic.html',
   styles: [ ].concat(DemoComponent.sharedStyles),
 })

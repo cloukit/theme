@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DemoComponent } from '../demo.component';
 import {
   CloukitThemeService,
   CloukitComponentTheme,
@@ -12,7 +11,7 @@ const prefixAll = (x) => x;
 @Component({
   selector: 'cloukit-story-00-basic',
   templateUrl: './story-00-basic.html',
-  styles: [ ].concat(DemoComponent.sharedStyles),
+  styleUrls: [ '../demo.styles.css' ]
 })
 export class Story00Component {
 

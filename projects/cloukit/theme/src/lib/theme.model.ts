@@ -32,7 +32,7 @@ export class CloukitStatefulAndModifierAwareElementTheme {
  */
 export class CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
   public style: any;
-  public icon : {
+  public icon? : {
     svgPathD: string;
     svgStyle: any;
   };

@@ -27,15 +27,188 @@ export class CloukitStatefulAndModifierAwareElementTheme {
   }
 }
 
+/*
+ * CSS Definition Base Classes
+ */
+
+export class CloukitBaseCssDefinitions {
+  public background?: any;
+  public backgroundAttachment?: any;
+  public backgroundColor?: any;
+  public backgroundImage?: any;
+  public backgroundPosition?: any;
+  public backgroundRepeat?: any;
+  public border?: any;
+  public borderBottom?: any;
+  public borderBottomColor?: any;
+  public borderBottomStyle?: any;
+  public borderBottomWidth?: any;
+  public borderColor?: any;
+  public borderLeft?: any;
+  public borderLeftColor?: any;
+  public borderLeftStyle?: any;
+  public borderLeftWidth?: any;
+  public borderRight?: any;
+  public borderRightColor?: any;
+  public borderRightStyle?: any;
+  public borderRightWidth?: any;
+  public borderStyle?: any;
+  public borderTop?: any;
+  public borderTopColor?: any;
+  public borderTopStyle?: any;
+  public borderTopWidth?: any;
+  public borderWidth?: any;
+  public clear?: any;
+  public clip?: any;
+  public color?: any;
+  public cursor?: any;
+  public display?: any;
+  public filter?: any;
+  public cssFloat?: any;
+  public font?: any;
+  public fontFamily?: any;
+  fontSize?: any;
+  public fontVariant?: any;
+  public fontWeight?: any;
+  public height?: any;
+  public left?: any;
+  public letterSpacing?: any;
+  public lineHeight?: any;
+  public listStyle?: any;
+  public listStyleImage?: any;
+  public listStylePosition?: any;
+  public listStyleType?: any;
+  public margin?: any;
+  public marginBottom?: any;
+  public marginLeft?: any;
+  public marginRight?: any;
+  public marginTop?: any;
+  public overflow?: any;
+  public padding?: any;
+  public paddingBottom?: any;
+  public paddingLeft?: any;
+  public paddingRight?: any;
+  public paddingTop?: any;
+  public pageBreakAfter?: any;
+  public pageBreakBefore?: any;
+  public position?: any;
+  public strokeDasharray?: any;
+  public strokeDashoffset?: any;
+  public strokeWidth?: any;
+  public textAlign?: any;
+  public textDecoration?: any;
+  public textIndent?: any;
+  public textTransform?: any;
+  public top?: any;
+  public verticalAlign?: any;
+  public visibility?: any;
+  public width?: any;
+  public zIndex?: any;
+  public flexDirection?: any;
+  public flexFlow?: any;
+  public flexWrap?: any;
+  public justifyContent?: any;
+  public alignItems?: any;
+  public alignContent?: any;
+  public order?: any;
+  [other: string]: any;
+}
+
+export class CloukitSvgCssDefinitions extends CloukitBaseCssDefinitions {
+  public fill?: any;
+  public stroke?: any;
+  public strokeWidth?: any;
+  public x?: any;
+  public y?: any;
+  public cx?: any;
+  public cy?: any;
+  public r?: any;
+}
+
+export class CloukitIconDefinition {
+  public svgPathD: string;
+  public svgStyle?: CloukitSvgCssDefinitions;
+}
+
 /**
  * The class that holds the actual styles for a single element that is aware of the uiState and uiModifier
  */
 export class CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
-  public style: any;
-  public icon? : {
-    svgPathD: string;
-    svgStyle: any;
-  };
+  public style: CloukitBaseCssDefinitions;
+  public icon?: CloukitIconDefinition;
+}
+
+export class CloukitComponentThemeBuilder {
+
+  constructor(private elementName: string,
+              private uiState: string,
+              private uiModifier: string,
+              private updateStyleInThemeCallback: Function,
+              private getStyleInThemeCallback: Function) {}
+
+  public withStyles(elementStyles: CloukitBaseCssDefinitions): CloukitComponentThemeBuilder {
+    const existingStyle: CloukitStatefulAndModifierAwareElementThemeStyleDefinition = this
+      .getStyleInThemeCallback(this.elementName, this.uiState, this.uiModifier);
+    const mergedStyle = CloukitComponentThemeBuilder.merge(existingStyle, {
+      style: elementStyles
+    } as CloukitStatefulAndModifierAwareElementThemeStyleDefinition);
+    this.updateStyleInThemeCallback(this.elementName, this.uiState, this.uiModifier, mergedStyle);
+    return this;
+  }
+
+  public withIcon(icon: CloukitIconDefinition): CloukitComponentThemeBuilder {
+    const existingStyle: CloukitStatefulAndModifierAwareElementThemeStyleDefinition = this
+      .getStyleInThemeCallback(this.elementName, this.uiState, this.uiModifier);
+    const mergedStyle = CloukitComponentThemeBuilder.merge(existingStyle, {
+      icon: icon
+    } as CloukitStatefulAndModifierAwareElementThemeStyleDefinition);
+    this.updateStyleInThemeCallback(this.elementName, this.uiState, this.uiModifier, mergedStyle);
+    return this;
+  }
+
+  public withIconStyles(iconStyles: CloukitSvgCssDefinitions): CloukitComponentThemeBuilder {
+    const existingStyle: CloukitStatefulAndModifierAwareElementThemeStyleDefinition = this
+      .getStyleInThemeCallback(this.elementName, this.uiState, this.uiModifier);
+    const mergedStyle = CloukitComponentThemeBuilder.merge(existingStyle, {
+      icon: {
+        svgStyle: iconStyles
+      }
+    } as CloukitStatefulAndModifierAwareElementThemeStyleDefinition);
+    this.updateStyleInThemeCallback(this.elementName, this.uiState, this.uiModifier, mergedStyle);
+    return this;
+  }
+
+  public inheritFrom(fromElementName: string, fromUiState: string, fromUiModifier: string): CloukitComponentThemeBuilder {
+    const existingStyle: CloukitStatefulAndModifierAwareElementThemeStyleDefinition = this
+      .getStyleInThemeCallback(fromElementName, fromUiState, fromUiModifier);
+    this.updateStyleInThemeCallback(this.elementName, this.uiState, this.uiModifier, existingStyle);
+    return this;
+  }
+
+  public static merge(x: CloukitStatefulAndModifierAwareElementThemeStyleDefinition,
+                      y: CloukitStatefulAndModifierAwareElementThemeStyleDefinition):
+  CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
+    const theme = { };
+    let xNullSafe = { style: {}, icon: {} } as CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
+    if (x !== undefined && x !== null) {
+      if (x.style !== undefined && x.style !== null) {
+        xNullSafe.style = x.style;
+      }
+      if (x.icon !== undefined && x.icon !== null) {
+        xNullSafe.icon = x.icon;
+      }
+    }
+    theme['style'] = Object.assign({}, xNullSafe.style, y.style);
+    if (xNullSafe.icon !== undefined && xNullSafe.icon !== null) {
+      theme['icon'] = Object.assign({}, xNullSafe.icon, y.icon);
+      if (y.icon !== undefined && y.icon !== null) {
+        theme['icon']['svgStyle'] = Object.assign({}, xNullSafe.icon.svgStyle, y.icon.svgStyle);
+      } else {
+        theme['icon']['svgStyle'] = Object.assign({}, xNullSafe.icon.svgStyle);
+      }
+    }
+    return theme as CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
+  }
 }
 
 /**
@@ -49,23 +222,28 @@ export class CloukitComponentTheme {
     this.styles = [];
   }
 
+  //
+  // BUILDER
+  //
+  public buildStyle(elementName: string, uiState: string, uiModifier: string): CloukitComponentThemeBuilder {
+    return new CloukitComponentThemeBuilder(
+      elementName, uiState, uiModifier,
+      this.createStyle.bind(this),
+      this.getStyle.bind(this),
+    );
+  }
+
+  //
+  // ////////
+  //
+
   /**
    * Deep merge style y into style x
    */
   public merge(x: CloukitStatefulAndModifierAwareElementThemeStyleDefinition,
     y: CloukitStatefulAndModifierAwareElementThemeStyleDefinition):
     CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
-    const theme = { };
-    theme['style'] = Object.assign({}, x.style, y.style);
-    if (x.icon !== undefined && x.icon !== null) {
-      theme['icon'] = Object.assign({}, x.icon, y.icon);
-      if (y.icon !== undefined && y.icon !== null) {
-        theme['icon']['svgStyle'] = Object.assign({}, x.icon.svgStyle, y.icon.svgStyle);
-      } else {
-        theme['icon']['svgStyle'] = Object.assign({}, x.icon.svgStyle);
-      }
-    }
-    return theme as CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
+    return CloukitComponentThemeBuilder.merge(x, y);
   }
 
   /**

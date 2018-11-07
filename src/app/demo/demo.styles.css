@@ -2,3 +2,15 @@
   font-family: sans-serif;
   padding:10px;
 }
+.code {
+  font-size:1.2rem;
+  color: #333;
+  background-color: #efefef;
+  padding: 2px 4px 2px 4px;
+}
+.preview {
+  background-color: #efefef;
+  padding: 4px 6px 4px 6px;
+  color: #333;
+  overflow-x: auto;
+}

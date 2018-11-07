@@ -1,9 +1,7 @@
 <div class="demo">
-  <h3>Custom Theme</h3>
-
   <p>
     Hover the element to see the changing <strong>uiModifer</strong>
-    and/or Click the element to see the changing <strong>uiState</strong>:
+    or click the element to see the changing <strong>uiState</strong>.
   </p>
 
   <div
@@ -12,6 +10,23 @@
     (mouseenter)="toggleUiModifier()"
     (mouseleave)="toggleUiModifier()"
   >
+    <svg
+      width="40"
+      height="40"
+      viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+      [ngStyle]="getStyle('mysvg').style"
+    >
+      <path
+        [ngStyle]="getStyle('mysvg').icon.svgStyle"
+        [attr.d]="getStyle('mysvg').icon.svgPathD"
+      ></path>
+    </svg>
     click me
   </div>
+
+  <p>The component knows about its <strong>uiState</strong> which is <code class="code">{{ uiState }}</code> and its <strong>uiModifier</strong> which is <code class="code">{{ uiModifier }}</code>.</p>
+  <p>The full theme for element <code class="code">myelement</code> looks like this:</p>
+  <pre class="preview">{{ getStyle('myelement') | json}}</pre>
+  <p>The full theme for element <code class="code">mysvg</code> looks like this:</p>
+  <pre class="preview">{{ getStyle('mysvg') | json}}</pre>
 </div>

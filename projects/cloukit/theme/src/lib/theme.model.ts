@@ -188,8 +188,11 @@ export class CloukitComponentThemeBuilder {
   public static merge(x: CloukitStatefulAndModifierAwareElementThemeStyleDefinition,
                       y: CloukitStatefulAndModifierAwareElementThemeStyleDefinition):
   CloukitStatefulAndModifierAwareElementThemeStyleDefinition {
-    const theme = { };
-    let xNullSafe = { style: {}, icon: {} } as CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
+    const theme = { style: {}, icon: { } } as CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
+    //
+    // Make x nullsafe
+    //
+    let xNullSafe = { style: {}, icon: { } } as CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
     if (x !== undefined && x !== null) {
       if (x.style !== undefined && x.style !== null) {
         xNullSafe.style = x.style;
@@ -198,14 +201,28 @@ export class CloukitComponentThemeBuilder {
         xNullSafe.icon = x.icon;
       }
     }
-    theme['style'] = Object.assign({}, xNullSafe.style, y.style);
-    if (xNullSafe.icon !== undefined && xNullSafe.icon !== null) {
-      theme['icon'] = Object.assign({}, xNullSafe.icon, y.icon);
-      if (y.icon !== undefined && y.icon !== null) {
-        theme['icon']['svgStyle'] = Object.assign({}, xNullSafe.icon.svgStyle, y.icon.svgStyle);
-      } else {
-        theme['icon']['svgStyle'] = Object.assign({}, xNullSafe.icon.svgStyle);
-      }
+    //
+    // Merge style
+    //
+    theme.style = Object.assign({}, xNullSafe.style, y.style);
+    //
+    // Merge icon
+    //
+    if (xNullSafe.icon !== undefined && xNullSafe.icon !== null && xNullSafe.icon.svgStyle !== undefined && xNullSafe.icon.svgStyle !== null && Object.keys(xNullSafe.icon.svgStyle).length !== 0) {
+      // first merge x
+      theme.icon.svgStyle = Object.assign({}, xNullSafe.icon.svgStyle);
+    }
+    if (y.icon !== undefined && y.icon !== null && y.icon.svgStyle !== undefined && y.icon.svgStyle !== null && Object.keys(y.icon.svgStyle).length !== 0) {
+      // if y then merge x and ontop y
+      theme.icon.svgStyle = Object.assign({}, xNullSafe.icon.svgStyle, y.icon.svgStyle);
+    }
+    if (xNullSafe.icon !== undefined && xNullSafe.icon !== null && xNullSafe.icon.svgPathD !== undefined && xNullSafe.icon.svgPathD !== null) {
+      // first merge x
+      theme.icon.svgPathD = xNullSafe.icon.svgPathD;
+    }
+    if (y.icon !== undefined && y.icon !== null && y.icon.svgPathD !== undefined && y.icon.svgPathD !== null) {
+      // if y then merge y
+      theme.icon.svgPathD = y.icon.svgPathD;
     }
     return theme as CloukitStatefulAndModifierAwareElementThemeStyleDefinition;
   }
